@@ -1,4 +1,5 @@
-import type { RecentActivity } from '../types';
+import type { RecentActivity } from "../types";
+
 
 export const getRecentActivity = async (): Promise<RecentActivity[]> => {
     // Dummy data for now

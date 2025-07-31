@@ -24,7 +24,7 @@ import { showToast } from '../utils/showToast';
 
 export const RegisterSection = () => {
     const { register: registerUser, loading } = useAuth();
-    const { isDark, toggleTheme } = useThemeContext();
+    const { currentMode, toggleTheme } = useThemeContext();
     const navigate = useNavigate();
 
     const [form, setForm] = useState<RegisterPayload>({
@@ -88,7 +88,7 @@ export const RegisterSection = () => {
         <CenteredContainer>
             {/* Toggle Light/Dark */}
             <ToggleTheme onClick={toggleTheme}>
-                {isDark ? '☀️ Light' : '🌙 Dark'}
+                {currentMode === 'light' ? '☀️ Light' : '🌙 Dark'}
             </ToggleTheme>
 
             <div
