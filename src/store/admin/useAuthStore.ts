@@ -51,7 +51,7 @@ export const useAuthStore = create<AuthState>()(
 
                         set({ user, token });
                     } catch (err) {
-                        showErrorToast('Login failed.');
+                        throw err;
                     } finally {
                         set({ loading: false });
                     }

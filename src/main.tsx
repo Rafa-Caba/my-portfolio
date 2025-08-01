@@ -8,6 +8,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
+if (import.meta.env.MODE === 'production') {
+  console.log = () => { };
+  console.warn = () => { };
+  console.error = () => { };
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>

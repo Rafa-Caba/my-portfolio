@@ -1,4 +1,3 @@
-// src/services/auth.ts
 import { api } from '../api/axios.api';
 
 import type {
@@ -7,7 +6,6 @@ import type {
     LoginResponse,
 } from '../types';
 import rawAxios from './rawAxios';
-// import { setAccessToken } from '../utils/tokenStorage';
 
 interface RefreshResponse {
     accessToken: string;
@@ -30,8 +28,15 @@ export const getUserProfile = async (): Promise<User> => {
 
 // 🔐 POST /auth/login
 export const loginUser = async (payload: LoginPayload): Promise<LoginResponse> => {
-    const { data } = await api.post<LoginResponse>('/auth/login', payload);
-    return data;
+    try {
+        const { data } = await api.post<LoginResponse>('/auth/login', payload);
+        return data;
+    } catch (error: any) {
+        // Optional: Log for debugging only if needed
+        // console.warn('Login error:', error.response?.data || error.message);
+
+        return null!;
+    }
 };
 
 // 🆕 POST /auth/register

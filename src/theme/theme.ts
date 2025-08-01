@@ -3,7 +3,6 @@ export const lightTheme = {
     text: '#222',                // Almost black for main text
     primary: '#4A90E2',          // Vivid blue for accents
     mode: 'light',
-    cardBackground: '#ffffff',   // Pure white for card areas
     card: '#e6e9ef',             // Slightly off-white border/contrast
     accent: '#50a7f3',           // Lighter blue accent for highlights
     textSecondary: '#555',       // Subdued grey for secondary text
@@ -15,6 +14,12 @@ export const lightTheme = {
     primaryShadow: 'rgba(74, 144, 226, 0.3)', // Light blue glow matching primary
     backgroundAlt: '#f5f7fa', // a soft, light gray-blue background
     primaryHover: '#357ABD', // Slightly darker than #4A90E2
+    textLight: '#4a4a4a',
+    cardBackground: '#ffffff',
+    textColor: '#1a1a1a',
+    cardShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+    cardHoverShadow: '0 8px 20px rgba(0, 0, 0, 0.1)',
+    cardBorder: 'rgba(0, 0, 0, 0.05)',
 };
 
 export const darkTheme = {
@@ -22,7 +27,6 @@ export const darkTheme = {
     text: '#f9f9f9',             // Almost white for main text
     primary: '#90CAF9',          // Soft blue for accents
     mode: 'dark',
-    cardBackground: '#13294b',   // Slightly lighter navy for cards
     card: '#1a3556',             // Blue-gray for elevated card edges
     accent: '#42a5f5',           // Brighter blue for callouts
     textSecondary: '#aaa',       // Light gray for secondary text
@@ -34,6 +38,12 @@ export const darkTheme = {
     primaryShadow: 'rgba(144, 202, 249, 0.25)', // Soft glow for focused fields
     backgroundAlt: '#1e1f25', // a gentle dark tone to contrast the main background
     primaryHover: '#64B5F6', // Slightly bolder than the current #90CAF9
+    textLight: '#ddd',
+    cardBackground: '#1f1f1f',
+    textColor: '#f5f5f5',
+    cardShadow: '0 4px 12px rgba(255, 255, 255, 0.05)',
+    cardHoverShadow: '0 8px 20px rgba(255, 255, 255, 0.1)',
+    cardBorder: 'rgba(255, 255, 255, 0.1)',
 };
 
 export type ThemeType = typeof lightTheme;

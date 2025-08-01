@@ -49,6 +49,9 @@ export const AdminHeader = ({ toggleTheme, isDark }: Props) => {
                     <AdminNavLink to="/admin/projects" $active={pathname === '/admin/projects'}>
                         Projects
                     </AdminNavLink>
+                    <AdminNavLink to="/admin/visits" $active={pathname === '/admin/visits'}>
+                        Visits 👀
+                    </AdminNavLink>
                     <AdminNavLink to="/admin/settings" $active={pathname === '/admin/settings'}>
                         Settings ⚙️
                     </AdminNavLink>

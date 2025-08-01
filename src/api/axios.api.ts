@@ -48,6 +48,11 @@ api.interceptors.response.use(
             }
         }
 
+        if (error.response?.status === 401 && error.config?.url?.includes('/auth/login')) {
+            // Silence only login 401 errors
+            return Promise.reject(new Error('Invalid credentials'));
+        }
+
         return Promise.reject(error);
     }
 );

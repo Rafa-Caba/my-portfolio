@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Card } from "react-bootstrap";
 import styled from "styled-components";
 
@@ -112,4 +113,37 @@ export const StyledCard = styled(Card)`
   .card-text {
     color: ${({ theme }) => theme.textSecondary};
   }
+`;
+
+export const ProjectStyledCard = styled(motion.div)`
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.cardBackground};
+  box-shadow: ${({ theme }) => theme.cardShadow};
+  transition: all 0.3s ease;
+  text-align: center;
+
+  img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  h4 {
+    margin-top: 0.8rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: ${({ theme }) => theme.textLight};
+  }
+`;
+
+export const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
 `;

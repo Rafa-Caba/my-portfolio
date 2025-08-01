@@ -1,16 +1,19 @@
-// src/sections-admin/AdminProjectsSection.tsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useProjectsStore } from '../store/admin/useProjectsStore';
 import { AdminSectionHeader } from '../components-admin/AdminSectionHeader';
 import { AdminProjectCard } from '../components-admin/AdminProjectCard';
+import type { Project } from '../types';
+import { ProjectsGrid } from '../styles/ProjectsStyles';
+import { ProjectPreviewModal } from '../components-admin/ProjectPreviewModal';
 
 const MySwal = withReactContent(Swal);
 
 export const AdminProjectsSection = () => {
     const { projects, fetchProjects, removeProject, loading } = useProjectsStore();
+    const [selected, setSelected] = useState<Project | null>(null);
 
     useEffect(() => {
         fetchProjects();
@@ -47,13 +50,17 @@ export const AdminProjectsSection = () => {
                 </div>
             ) : (
                 <Row xs={1} md={2} lg={3} className="g-4">
-                    {projects.map((project) => (
-                        <Col key={project._id}>
-                            <AdminProjectCard project={project} onDelete={handleDelete} />
-                        </Col>
-                    ))}
+                    <ProjectsGrid>
+                        {projects.map((project) => (
+                            <Col key={project._id}>
+                                <AdminProjectCard project={project} onDelete={handleDelete} onOpen={setSelected} />
+                            </Col>
+                        ))}
+                    </ProjectsGrid>
                 </Row>
             )}
+
+            <ProjectPreviewModal project={selected} onClose={() => setSelected(null)} />
         </div>
     );
 };

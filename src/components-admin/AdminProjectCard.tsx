@@ -7,11 +7,12 @@ import { AdminTechBadge, StyledCard } from '../styles/ProjectsStyles';
 interface Props {
     project: Project;
     onDelete: (id: string) => void;
+    onOpen: (project: Project) => void;
 }
 
-export const AdminProjectCard = ({ project, onDelete }: Props) => {
+export const AdminProjectCard = ({ project, onDelete, onOpen }: Props) => {
     return (
-        <StyledCard>
+        <StyledCard onClick={() => onOpen(project)} >
             <Card.Img
                 variant="top"
                 src={project.imageUrl}
