@@ -17,7 +17,7 @@ export const NavContainer = styled.nav<{ $scrolled: boolean; $hidden: boolean }>
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0rem;
     padding: 0.5rem 1rem;
   }
 `;
@@ -36,7 +36,8 @@ export const NavLinks = styled.div`
   gap: 1.2rem;
 
   @media (max-width: 768px) {
-    margin-top: 0.5rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -61,6 +62,6 @@ export const ToggleTheme = styled.button`
 
   @media (max-width: 768px) {
     align-self: flex-end;
-    margin: 0.4rem 0rem;
+    margin: 0rem 0rem 0.3rem 0rem;
   }
 `;

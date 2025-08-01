@@ -3,12 +3,22 @@ import styled from 'styled-components';
 
 export const VisitsContainer = styled.div`
   padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0.7rem;
+  }
 `;
 
 export const VisitHeader = styled.h2`
   font-size: 1.4rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const CardVisit = styled.div`

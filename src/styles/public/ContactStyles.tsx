@@ -7,7 +7,7 @@ export const ContactWrapper = styled.section`
 `;
 
 export const ContactBox = styled.div`
-  max-width: 700px;
+  max-width: 670px;
   margin: 0 auto;
   background: ${({ theme }) => theme.cardBackground};
   padding: 2rem;
@@ -24,6 +24,17 @@ export const ContactItem = styled.p`
   svg {
     margin-right: 0.75rem;
     color: ${({ theme }) => theme.primary};
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+    svg {
+      margin-right: 0.75rem;
+      color: ${({ theme }) => theme.primary};
+      font-size: 1.4rem;
+    }
   }
 `;
 

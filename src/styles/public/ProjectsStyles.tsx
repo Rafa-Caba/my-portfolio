@@ -23,6 +23,6 @@ export const Card = styled(motion.div)`
 export const EndImage = styled.img`
     margin: 3rem auto;
     display: block;
-    max-width: 300px;
+    max-width: 150px;
     opacity: 0.6;
 `;

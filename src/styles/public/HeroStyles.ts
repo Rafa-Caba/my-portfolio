@@ -62,7 +62,7 @@ export const StyledCat = styled(CatSvg)`
 
     @media (max-width: 768px) {
         top: -20px;
-        left: 10px;
+        left: 0px;
         width: 80px;
     }
 `;
@@ -78,7 +78,7 @@ export const StyledPaw = styled(PawSvg)`
 
     @media (max-width: 768px) {
         top: -20px;
-        right: 10px;
+        right: 0px;
         width: 80px;
     }
 `;
@@ -99,7 +99,7 @@ export const StyledCoffee = styled(CoffeeSvg)`
   }
 
   @media (max-width: 480px) {
-    top: 400px;
+    top: 320px;
     width: 200px;
   }
 `;
