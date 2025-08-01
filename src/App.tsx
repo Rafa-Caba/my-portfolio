@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { useThemeContext } from './context/ThemeContext';
@@ -24,28 +23,12 @@ import { AdminCreateProjectPage } from './pages/pages-admin/CreateProjectPage';
 import { AdminEditProjectPage } from './pages/pages-admin/AdminEditProjectPage';
 import { AdminRedirect } from './pages/pages-admin/AdminRedirect';
 import { AdminSettingsPage } from './pages/pages-admin/AdminSettingsPage';
-import { useAuth } from './hooks/useAuth';
-import { useSettingsStore } from './store/admin/useSettingsStore';
 import { AdminVisitsPage } from './pages/pages-admin/AdminVisitsPage';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
     const { toggleTheme, currentMode } = useThemeContext();
     const { user } = useAuth();
-    const { settings } = useSettingsStore();
-
-    useEffect(() => {
-        if (!settings?.logoUrl) return;
-
-        const existing = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
-        if (existing) {
-            existing.href = settings.logoUrl;
-        } else {
-            const link = document.createElement('link');
-            link.rel = 'icon';
-            link.href = settings.logoUrl;
-            document.head.appendChild(link);
-        }
-    }, [settings?.logoUrl]);
 
     return (
         <>

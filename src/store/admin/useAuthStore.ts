@@ -4,13 +4,16 @@ import { devtools, persist } from 'zustand/middleware';
 import {
     getUserProfile,
     loginUser,
+    logoutUser,
     refreshToken,
     registerUser,
 } from '../../services/auth';
+
 import type {
     User,
     LoginPayload,
 } from '../../types';
+
 import { showErrorToast } from '../../utils/showToast';
 
 interface AuthState {
@@ -20,12 +23,12 @@ interface AuthState {
 
     login: (payload: LoginPayload) => Promise<void>;
     register: (payload: FormData) => Promise<void>;
-    logout: () => void;
+    logout: () => Promise<string>;
+    refresh: () => Promise<boolean>;
 
     setUser: (user: User | null) => void;
     setToken: (token: string | null) => void;
     setLoading: (value: boolean) => void;
-    refresh: () => Promise<boolean>;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -40,23 +43,6 @@ export const useAuthStore = create<AuthState>()(
                 setToken: (token) => set({ token }),
                 setLoading: (val) => set({ loading: val }),
 
-                logout: () => {
-                    set({ user: null, token: null });
-                },
-
-                login: async (payload) => {
-                    set({ loading: true });
-                    try {
-                        const { token, user } = await loginUser(payload);
-
-                        set({ user, token });
-                    } catch (err) {
-                        throw err;
-                    } finally {
-                        set({ loading: false });
-                    }
-                },
-
                 register: async (payload) => {
                     set({ loading: true });
                     try {
@@ -69,10 +55,36 @@ export const useAuthStore = create<AuthState>()(
                     }
                 },
 
-                refresh: async () => {
+                login: async (payload) => {
                     set({ loading: true });
                     try {
-                        const { accessToken } = await refreshToken();
+                        const data = await loginUser(payload);
+                        if (!data) throw new Error('Login failed');
+
+                        const { token, refreshToken, user } = data;
+
+                        // Save token in state, user, and refreshToken in localStorage
+                        set({ user, token });
+                        localStorage.setItem('refreshToken', refreshToken);
+                    } catch (err: any) {
+                        showErrorToast('Login failed. Please try again.');
+                        throw err;
+                    } finally {
+                        set({ loading: false });
+                    }
+                },
+
+                refresh: async () => {
+                    set({ loading: true });
+
+                    try {
+                        const refreshTokenValue = localStorage.getItem('refreshToken');
+                        if (!refreshTokenValue) throw new Error('No refresh token');
+
+                        const res = await refreshToken(refreshTokenValue);
+                        if (!res) throw new Error('Refresh failed');
+
+                        const { accessToken } = res;
                         set({ token: accessToken });
 
                         const user = await getUserProfile();
@@ -80,13 +92,36 @@ export const useAuthStore = create<AuthState>()(
 
                         return true;
                     } catch (error) {
-                        showErrorToast('Session expired. Please login again.');
-                        get().logout();
+                        showErrorToast('Session expired. Please log in again.');
+                        await get().logout();
                         return false;
                     } finally {
                         set({ loading: false });
                     }
-                }
+                },
+
+                logout: async () => {
+                    set({ loading: true });
+
+                    try {
+                        const refreshTokenValue = localStorage.getItem('refreshToken');
+
+                        if (refreshTokenValue) {
+                            const { message } = await logoutUser(refreshTokenValue);
+                            localStorage.removeItem('refreshToken');
+                            set({ user: null, token: null });
+                            return message;
+                        }
+
+                        set({ user: null, token: null });
+                        return 'Logged out';
+                    } catch (err) {
+                        showErrorToast('Logout failed.');
+                        throw err;
+                    } finally {
+                        set({ loading: false });
+                    }
+                },
             }),
             {
                 name: 'AuthStore',

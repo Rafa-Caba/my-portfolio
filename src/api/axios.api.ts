@@ -4,17 +4,16 @@ import { refreshToken } from '../services/auth';
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL + '/api',
-    withCredentials: true,
+    withCredentials: false, // ❗ Since you're not using cookies anymore
 });
 
-// ✅ Request interceptor to attach access token
+// ✅ Attach Authorization header if token exists
 api.interceptors.request.use(
     (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-        const token = useAuthStore.getState().token; // ✅ Get token from store at request time
+        const token = useAuthStore.getState().token;
 
         if (token && config.headers) {
             config.headers.Authorization = `Bearer ${token}`;
-            // console.log('📦 Added token to request:', token);
         }
 
         return config;
@@ -22,34 +21,42 @@ api.interceptors.request.use(
     (error: AxiosError) => Promise.reject(error)
 );
 
-// ✅ Response interceptor to refresh token on 401
+// ✅ Refresh token on 401
 api.interceptors.response.use(
     (response) => response,
     async (error: AxiosError) => {
         const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
 
+        // Only attempt retry once
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
+
             try {
-                const { accessToken } = await refreshToken();
+                const refreshTokenValue = localStorage.getItem('refreshToken');
+                if (!refreshTokenValue) throw new Error('No refresh token available');
 
-                // console.log('🔐 Retrying original request with new token:', accessToken);
+                const refreshed = await refreshToken(refreshTokenValue);
+                if (!refreshed?.accessToken) throw new Error('Token refresh failed');
 
-                useAuthStore.getState().setToken(accessToken);
+                // Set new token in store
+                useAuthStore.getState().setToken(refreshed.accessToken);
 
-                // Retry original request with new token
+                console.warn('🔁 Retrying request with refreshed token...');
+
+                // Re-attach new token and retry request
                 if (originalRequest.headers) {
-                    originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+                    originalRequest.headers.Authorization = `Bearer ${refreshed.accessToken}`;
                 }
 
                 return api(originalRequest);
             } catch (refreshError) {
+                useAuthStore.getState().logout(); // Optionally force logout
                 return Promise.reject(refreshError);
             }
         }
 
+        // Special case for login failure
         if (error.response?.status === 401 && error.config?.url?.includes('/auth/login')) {
-            // Silence only login 401 errors
             return Promise.reject(new Error('Invalid credentials'));
         }
 

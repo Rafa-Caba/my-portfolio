@@ -5,11 +5,6 @@ export interface LoginPayload {
     password: string;
 }
 
-export interface LoginResponse {
-    token: string;
-    user: User;
-}
-
 export interface RegisterPayload {
     name: string;
     username: string;
@@ -17,4 +12,19 @@ export interface RegisterPayload {
     password: string;
     bio: string;
     imagen: File | null;
+}
+
+export interface LoginResponse {
+    mensaje: string;
+    token: string;
+    refreshToken: string;
+    user: User;
+}
+
+export interface RefreshResponse {
+    accessToken: string;
+}
+
+export interface LogoutResponse {
+    message: string;
 }

@@ -33,11 +33,11 @@ export const LoginSection = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+
         try {
             await login(form);
 
             useDashboardStore.getState().fetchStats();
-
             showToast('Welcome back! 🎉', 'success');
 
             navigate('/admin/dashboard');
