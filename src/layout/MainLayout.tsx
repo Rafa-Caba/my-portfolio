@@ -4,6 +4,7 @@ import { Navbar } from '../components/Navbar';
 import { ContentWrapper } from '../styles/LayoutStyles';
 import { useAuth } from '../hooks/useAuth';
 import { AdminBadge, ReturnLink } from '../components-public/AdminModeBadge';
+import { useTrackVisit } from '../hooks/useTrackVisit';
 
 interface Props {
     toggleTheme: () => void;
@@ -12,6 +13,8 @@ interface Props {
 
 export const MainLayout = ({ toggleTheme, isDark }: Props) => {
     const { token } = useAuth();
+
+    useTrackVisit();
 
     const showReturnToAdmin =
         localStorage.getItem('cameFromAdmin') === 'true' && !!token;
