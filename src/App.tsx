@@ -25,6 +25,7 @@ import { AdminRedirect } from './pages/pages-admin/AdminRedirect';
 import { AdminSettingsPage } from './pages/pages-admin/AdminSettingsPage';
 import { AdminVisitsPage } from './pages/pages-admin/AdminVisitsPage';
 import { useAuth } from './hooks/useAuth';
+import { RedirectReset } from './components-public/RedirectReset';
 
 function App() {
     const { toggleTheme, currentMode } = useThemeContext();
@@ -46,6 +47,7 @@ function App() {
                     <Route path="social" element={<SocialPage />} />
                     <Route path="about" element={<AboutPage />} />
                     <Route path="contact" element={<ContactPage />} />
+                    <Route path="/redirect" element={<RedirectReset />} />
                 </Route>
 
                 <Route path="/admin" element={<AdminRedirect />} />

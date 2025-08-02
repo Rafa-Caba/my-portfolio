@@ -40,6 +40,10 @@ export const Subtitle = styled.h2`
     font-size: 1.2rem;
     font-weight: 400;
     margin-top: 0.5rem;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
 `;
 
 export const ProfileImage = styled.img`
@@ -94,12 +98,12 @@ export const StyledCoffee = styled(CoffeeSvg)`
   opacity: ${({ theme }) => theme.mode === 'dark' ? 0.9 : 0.8};
 
   @media (max-width: 768px) {
-    top: 540px;
+    top: 500px;
     width: 80px;
   }
 
   @media (max-width: 480px) {
-    top: 320px;
-    width: 200px;
+    top: 280px;
+    width: 150px;
   }
 `;

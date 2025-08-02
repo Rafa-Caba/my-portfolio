@@ -55,7 +55,11 @@ export const AdminHeader = ({ toggleTheme, isDark }: Props) => {
                     <AdminNavLink to="/admin/settings" $active={pathname === '/admin/settings'}>
                         Settings ⚙️
                     </AdminNavLink>
-                    <AdminNavLink to="/" $active={pathname === '/'}>
+                    <AdminNavLink
+                        to="/"
+                        $active={pathname === '/'}
+                        onClick={() => localStorage.setItem('cameFromAdmin', 'true')}
+                    >
                         Public Site 🌎
                     </AdminNavLink>
                 </Nav>

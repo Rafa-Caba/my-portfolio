@@ -1,5 +1,7 @@
 import { usePublicContext } from '../context/public/PublicContext';
-import { HeroWrapper, NameText, ProfileImage, StyledCat, StyledCoffee, StyledPaw, Subtitle } from '../styles/public/HeroStyles';
+import { HeroWrapper, StyledCat, StyledCoffee, StyledPaw, Subtitle } from '../styles/public/HeroStyles';
+import { StyledHeroName } from './StyledHeroName';
+import { GlowingProfileWrapper, ProfileImage } from './StyledProfileImage';
 
 export const HeroSection = () => {
     const { publicUser } = usePublicContext();
@@ -15,10 +17,13 @@ export const HeroSection = () => {
             <StyledPaw className="paw" />
 
             {publicUser?.imageUrl && (
-                <ProfileImage src={publicUser.imageUrl} alt={publicUser.name} />
+                <GlowingProfileWrapper>
+                    <ProfileImage src={publicUser.imageUrl} alt={publicUser.name} />
+                </GlowingProfileWrapper>
+                // <ProfileImage src={publicUser.imageUrl} alt={publicUser.name} />
             )}
 
-            <NameText>{publicUser?.name || 'Unknown Dev'}</NameText>
+            <StyledHeroName>{publicUser?.name || 'So-and-So Dev'}</StyledHeroName>
             <Subtitle>{publicUser?.title || 'Developer'}</Subtitle>
         </HeroWrapper>
     );

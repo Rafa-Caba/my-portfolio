@@ -34,7 +34,7 @@ export const Navbar = ({ toggleTheme, isDark }: Props) => {
             <Logo>Rafael Cabanillas</Logo>
 
             <NavLinks>
-                <StyledLink to="/" $active={pathname === '/'}>Inicio</StyledLink>
+                <StyledLink to="/" $active={pathname === '/'}>Home</StyledLink>
                 <StyledLink to="/projects" $active={pathname === '/projects'}>Projects</StyledLink>
                 <StyledLink to="/about" $active={pathname === '/about'}>About me</StyledLink>
                 <StyledLink to="/social" $active={pathname === '/social'}>Social Media</StyledLink>
