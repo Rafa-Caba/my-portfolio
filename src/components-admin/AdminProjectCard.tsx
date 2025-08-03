@@ -12,12 +12,13 @@ interface Props {
 
 export const AdminProjectCard = ({ project, onDelete, onOpen }: Props) => {
     return (
-        <StyledCard onClick={() => onOpen(project)} >
+        <StyledCard >
             <Card.Img
                 variant="top"
                 src={project.imageUrl}
                 alt={project.title}
                 style={{ objectFit: 'cover', height: '200px' }}
+                onClick={() => onOpen(project)}
             />
             <Card.Body>
                 <Card.Title className="d-flex justify-content-between align-items-start">
@@ -51,12 +52,12 @@ export const AdminProjectCard = ({ project, onDelete, onOpen }: Props) => {
                         </OverlayTrigger>
                     </div>
                 </Card.Title>
-                <Card.Text>
+                <Card.Text onClick={() => onOpen(project)}>
                     {project.description.length > 80
                         ? project.description.substring(0, 80) + '...'
                         : project.description}
                 </Card.Text>
-                <div className="d-flex flex-wrap gap-2">
+                <div onClick={() => onOpen(project)} className="d-flex flex-wrap gap-2">
                     {project.technologies.map((tech, i) => (
                         <AdminTechBadge key={i}>{tech}</AdminTechBadge>
                     ))}

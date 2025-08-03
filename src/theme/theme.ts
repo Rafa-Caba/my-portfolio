@@ -20,6 +20,8 @@ export const lightTheme = {
     cardShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
     cardHoverShadow: '0 8px 20px rgba(0, 0, 0, 0.1)',
     cardBorder: 'rgba(0, 0, 0, 0.05)',
+    bgSecondary: '#f9f9fc',     // soft light gray with bluish tint
+    textMuted: '#6c757d',       // classic muted gray
 };
 
 export const darkTheme = {
@@ -44,6 +46,7 @@ export const darkTheme = {
     cardShadow: '0 4px 12px rgba(255, 255, 255, 0.05)',
     cardHoverShadow: '0 8px 20px rgba(255, 255, 255, 0.1)',
     cardBorder: 'rgba(255, 255, 255, 0.1)',
+    bgSecondary: 'rgba(255, 255, 255, 0.05)', // for dark with blur
 };
 
 export type ThemeType = typeof lightTheme;

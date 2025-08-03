@@ -50,17 +50,20 @@ export const AdminHeader = ({ toggleTheme, isDark }: Props) => {
                         Projects
                     </AdminNavLink>
                     <AdminNavLink to="/admin/visits" $active={pathname === '/admin/visits'}>
-                        Visits 👀
+                        👀 Visits
+                    </AdminNavLink>
+                    <AdminNavLink to="/admin/logs" $active={pathname === '/admin/logs'}>
+                        🛠 Logs
                     </AdminNavLink>
                     <AdminNavLink to="/admin/settings" $active={pathname === '/admin/settings'}>
-                        Settings ⚙️
+                        ⚙️ Settings
                     </AdminNavLink>
                     <AdminNavLink
                         to="/"
                         $active={pathname === '/'}
                         onClick={() => localStorage.setItem('cameFromAdmin', 'true')}
                     >
-                        Public Site 🌎
+                        🌎 Public Site
                     </AdminNavLink>
                 </Nav>
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Row, Spinner } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useProjectsStore } from '../store/admin/useProjectsStore';
@@ -36,7 +36,7 @@ export const AdminProjectsSection = () => {
     };
 
     return (
-        <div className='p-3'>
+        <div className='p-2 p-md-3'>
             <AdminSectionHeader
                 title="Projects"
                 subtitle="Manage your portfolio projects"
@@ -49,12 +49,15 @@ export const AdminProjectsSection = () => {
                     <Spinner animation="border" variant="primary" />
                 </div>
             ) : (
-                <Row xs={1} md={2} lg={3} className="g-4">
+                <Row className="g-4">
                     <ProjectsGrid>
                         {projects.map((project) => (
-                            <Col key={project._id}>
-                                <AdminProjectCard project={project} onDelete={handleDelete} onOpen={setSelected} />
-                            </Col>
+                            <AdminProjectCard
+                                key={project._id}
+                                project={project}
+                                onDelete={handleDelete}
+                                onOpen={setSelected}
+                            />
                         ))}
                     </ProjectsGrid>
                 </Row>

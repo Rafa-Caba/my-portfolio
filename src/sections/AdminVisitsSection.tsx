@@ -13,11 +13,13 @@ export const AdminVisitsSection = () => {
         visitsByPath,
         fetchVisitCount,
         fetchGroupedVisits,
+        fetchGroupedByDate
     } = useVisitStore();
 
     useEffect(() => {
         fetchVisitCount();
         fetchGroupedVisits();
+        fetchGroupedByDate();
     }, []);
 
     return (
@@ -27,7 +29,7 @@ export const AdminVisitsSection = () => {
 
             <VisitHeader>Total Visits: {visitCount}</VisitHeader>
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
                 {visits.map((visit) => (
                     <VisitCardContainer
                         key={visit._id}

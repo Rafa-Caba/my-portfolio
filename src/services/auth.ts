@@ -49,6 +49,5 @@ export const logoutUser = async (refreshTokenValue: string): Promise<LogoutRespo
 // 👤 GET /usuarios/perfil
 export const getUserProfile = async (): Promise<User> => {
     const { data } = await api.get<User>('/users/profile');
-
     return data;
 };

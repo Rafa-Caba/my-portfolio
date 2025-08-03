@@ -5,6 +5,8 @@ import { ContentWrapper } from '../styles/LayoutStyles';
 import { useAuth } from '../hooks/useAuth';
 import { AdminBadge, ReturnLink } from '../components-public/AdminModeBadge';
 import { useTrackVisit } from '../hooks/useTrackVisit';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 interface Props {
     toggleTheme: () => void;
@@ -15,6 +17,16 @@ export const MainLayout = ({ toggleTheme, isDark }: Props) => {
     const { token } = useAuth();
 
     useTrackVisit();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            axios.post(`${import.meta.env.VITE_API_URL}/api/visitors/ping-visitor`, {
+                path: location.pathname,
+            });
+        }, 30000); // Every 30s
+
+        return () => clearInterval(interval);
+    }, [location.pathname]);
 
     const showReturnToAdmin =
         localStorage.getItem('cameFromAdmin') === 'true' && !!token;

@@ -143,7 +143,44 @@ export const ProjectStyledCard = styled(motion.div)`
 
 export const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
+
+  grid-template-columns: repeat(1, 1fr); /* Mobile default */
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr); /* Regular screens */
+  }
+
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(4, 1fr); /* Ultra-wide screens */
+  }
+`;
+
+export const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: start;
+  }
+`;
+
+export const Titles = styled.div`
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+  }
+  p {
+    font-size: 0.95rem;
+    color: ${({ theme }) => theme.textSecondary};
+  }
 `;

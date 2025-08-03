@@ -26,6 +26,7 @@ import { AdminSettingsPage } from './pages/pages-admin/AdminSettingsPage';
 import { AdminVisitsPage } from './pages/pages-admin/AdminVisitsPage';
 import { useAuth } from './hooks/useAuth';
 import { RedirectReset } from './components-public/RedirectReset';
+import { AdminLogsPage } from './pages/pages-admin/AdminLogsPage';
 
 function App() {
     const { toggleTheme, currentMode } = useThemeContext();
@@ -67,6 +68,7 @@ function App() {
                     <Route path="projects/edit/:id" element={<AdminEditProjectPage />} />
                     <Route path="settings" element={<AdminSettingsPage />} />
                     <Route path="visits" element={<AdminVisitsPage />} />
+                    <Route path="logs" element={<AdminLogsPage />} />
                 </Route>
 
                 {/* Auth Pages */}

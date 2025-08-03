@@ -1,8 +1,8 @@
 import { Button } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
-import styled from 'styled-components';
 import { type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HeaderWrapper, Titles } from '../styles/ProjectsStyles';
 
 interface Props {
     title: string;
@@ -11,25 +11,6 @@ interface Props {
     buttonTo?: string;
     icon?: ReactNode;
 }
-
-const HeaderWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-`;
-
-const Titles = styled.div`
-    h2 {
-        font-size: 1.8rem;
-        margin-bottom: 0.2rem;
-    }
-    p {
-        font-size: 0.95rem;
-        color: ${({ theme }) => theme.textSecondary};
-    }
-`;
 
 export const AdminSectionHeader = ({
     title,
@@ -48,7 +29,7 @@ export const AdminSectionHeader = ({
             </Titles>
 
             {buttonTo && buttonLabel && (
-                <Button variant="primary" onClick={() => navigate(buttonTo)}>
+                <Button className='align-self-end align-self-md-center' variant="primary" onClick={() => navigate(buttonTo)}>
                     {icon}&nbsp;{buttonLabel}
                 </Button>
             )}
