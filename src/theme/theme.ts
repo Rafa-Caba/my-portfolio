@@ -47,6 +47,7 @@ export const darkTheme = {
     cardHoverShadow: '0 8px 20px rgba(255, 255, 255, 0.1)',
     cardBorder: 'rgba(255, 255, 255, 0.1)',
     bgSecondary: 'rgba(255, 255, 255, 0.05)', // for dark with blur
+    textMuted: '#6c757d',
 };
 
 export type ThemeType = typeof lightTheme;
