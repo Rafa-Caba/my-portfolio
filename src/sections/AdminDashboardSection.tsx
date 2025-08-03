@@ -8,6 +8,8 @@ import { UserOverviewCard } from '../components-admin/UserOverviewCard';
 import { UserStatsCard } from '../components-admin/UserStatsCard';
 import { RecentActivityFeed } from '../components-admin/RecentActivityFeed';
 import { LiveVisitorsDisplay } from '../components-admin/LiveVisitorsCard';
+import { VisitorMap } from '../components-admin/VisitorMap';
+import { Card } from 'react-bootstrap';
 
 export const AdminDashboardSection = () => {
     const { user } = useAuth();
@@ -49,6 +51,13 @@ export const AdminDashboardSection = () => {
             </DashboardContainer>
 
             <RecentActivityFeed />
+
+            <Card>
+                <Card.Header>🌍 Live Visitor Map</Card.Header>
+                <Card.Body>
+                    <VisitorMap />
+                </Card.Body>
+            </Card>
 
             <LiveVisitorsDisplay />
         </SectionWrapper>

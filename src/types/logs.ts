@@ -20,14 +20,3 @@ export interface Log extends BaseLog {
     };
     userAgent: string;
 }
-
-export interface Visitor {
-    ip: string;
-    lastSeen: string;
-    userAgent?: string;
-    path?: string;
-}
-
-export interface ActiveVisitorsResponse {
-    count: number;
-}

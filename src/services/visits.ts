@@ -1,5 +1,4 @@
 import api from '../api/axios.api';
-import type { ActiveVisitorsResponse } from '../types';
 import type { Visit, VisitFilters, VisitGroupedByDate, VisitGroupedByPath } from '../types/visit';
 
 export const getRecentVisits = async (): Promise<Visit[]> => {
@@ -32,10 +31,5 @@ export const getFilteredVisits = async (filters: VisitFilters): Promise<Visit[]>
     const url = `/visits?${queryParams.toString()}`;
     const { data } = await api.get<Visit[]>(url);
 
-    return data;
-};
-
-export const getActiveVisitors = async (): Promise<ActiveVisitorsResponse> => {
-    const { data } = await api.get<ActiveVisitorsResponse>('/visitors/active');
     return data;
 };

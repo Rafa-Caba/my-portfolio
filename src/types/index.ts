@@ -7,3 +7,4 @@ export * from './dashboard';
 export * from './siteSettings';
 export * from './visit';
 export * from './logs';
+export * from './visitors';

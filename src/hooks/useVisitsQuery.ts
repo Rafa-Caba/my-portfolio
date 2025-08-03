@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getActiveVisitors } from '../services/visits';
 import type { ActiveVisitorsResponse } from '../types';
+import { getActiveVisitors } from '../services/visitors';
 
 export const useVisitsQuery = () => {
     return useQuery<ActiveVisitorsResponse>({
